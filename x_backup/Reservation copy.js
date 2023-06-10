@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+import { isEmail, isNumeric, isURL } from "validator";
 
 const Reservation = mongoose.model("Reservation", {
-  creationDate: Date,
   user: {
     identity: {
       genre: String,
@@ -14,14 +14,14 @@ const Reservation = mongoose.model("Reservation", {
       },
     },
     contacts: {
-      email: { type: String, required: true },
+      email: { type: String, required: true, validate: [isEmail, "Invalid email"] },
       phone: {
         countryCode: { type: Number, required: true },
-        number: { type: Number, required: true },
+        number: { type: Number, required: true, validate: [isNumeric, "Invalid phone number"] },
       },
       address: {
         street: String,
-        zipCode: { type: Number },
+        zipCode: { type: Number, validate: [isNumeric, "Invalid zipcode"] },
         city: String,
         country: String,
       },
@@ -50,7 +50,7 @@ const Reservation = mongoose.model("Reservation", {
       pricePerDay: {
         reservation: {
           price: Number,
-          currency: String,
+          unit: String,
         },
         extraFees: Array,
         additionnalCharges: Array,
@@ -61,8 +61,8 @@ const Reservation = mongoose.model("Reservation", {
         description: String,
         shortSubline: String,
         longSubline: String,
-        mileageInfo: String,
-        imageUrl: { type: String },
+        mileAgeInfo: String,
+        imageUrl: { type: String, validate: [isURL, "Invalid url"] },
       },
     },
   },

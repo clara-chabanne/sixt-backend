@@ -63,7 +63,6 @@ offerRoute.get("/offerinfos", async (req, res) => {
     let offer = undefined;
 
     for (i = 0; i < data.length; i++) {
-      console.log(i);
       if (data[i].id === req.query.offerId) {
         offer = data[i];
       }

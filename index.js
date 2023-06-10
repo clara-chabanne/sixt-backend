@@ -11,10 +11,12 @@ mongoose.connect(process.env.MONGODB_LOCAL);
 
 // Routes
 const offersRoute = require("./routes/offer.route");
-// const offersRoutes = require("./routes/offers");
+const reservationsRoute = require("./routes/reservation.route");
+const adminRoute = require("./routes/admin.route");
 
 app.use("/offer", offersRoute);
-// app.use(offersRoutes);
+app.use("/reservation", reservationsRoute);
+app.use("/admin", adminRoute);
 
 // Home
 app.get("/", (req, res) => {
