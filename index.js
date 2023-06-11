@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_LOCAL);
+mongoose.connect(process.env.MONGODB_URI);
 
 // Routes
 const offersRoute = require("./routes/offer.route");
